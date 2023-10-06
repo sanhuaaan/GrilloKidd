@@ -1,0 +1,39 @@
+[0=>"piedra", 1=>"tijera", 2=>"papel", 3=>"grillo", 4=>"navaja"];
+
+
+GRILLO:
+
+- USA NAVAJA, COME PAPEL
+- TIJERA CORTA GRILLO, PIEDRA APLASTA GRILLO
+
+PAPEL:
+
+- ROMPE PIEDRA, ROMPE NAVAJA
+. TIJERA CORTA PAPEL, GRILLO COME PAPEL
+
+TIJERA:
+
+-CORTA PAPEL, CORTA GRILLO
+-PIDRA ROMPE TIJERA, NAVAJA DESATORNILLA TIJERA.
+
+PIEDRA:
+
+- ROMPE TIJERA, APLASTA GRILLO
+- NAVAJA AFILA PIEDRA, PAPEL ENVUELVE PIEDRA
+
+NAVAJA:
+
+- AFILA PIEDRA, DESATORNILLA TIJERA.
+- PAPEL ENVUELVE NAVAJA, GRILLO USA NAVAJA.
+
+
+C:\Users\mako>haxelib set openfl 3.6.1
+Library openfl current version is now 3.6.1
+
+C:\Users\mako>haxelib set lime 2.9.1
+Library lime current version is now 2.9.1
+
+C:\Users\mako>haxelib remove openfl 4.0.0
+
+
+haxelib set hxcpp 3.2.102
