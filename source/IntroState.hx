@@ -35,13 +35,13 @@ class IntroState extends FlxState{
 		logoGrillero.scale.x = 0.001;
 		logoGrillero.scale.y = 0.001;
 		FlxTween.tween(logoGrillero.scale, {x: 0.2, y: 0.2}, tiempoIntro, {type:FlxTween.ONESHOT, onComplete:function(_)
-																			{
-																				logoGrillero.angularVelocity = 0;
-																				FlxTween.tween(logoGrillero.scale, {x: 0.3, y: 0.3},0.1,{type:FlxTween.PINGPONG});
-																				luz.visible = true;
-																				FlxTween.tween(luz,{alpha:0},0.2,{type:FlxTween.ONESHOT});
-																				FlxG.camera.shake(0.02,2.5);
-																			}});
+		{
+			logoGrillero.angularVelocity = 0;
+			FlxTween.tween(logoGrillero.scale, {x: 0.3, y: 0.3},0.1,{type:FlxTween.PINGPONG});
+			luz.visible = true;
+			FlxTween.tween(luz,{alpha:0},0.2,{type:FlxTween.ONESHOT});
+			FlxG.camera.shake(0.02,2.5);
+		}});
 
 		luz = new FlxSprite(0, 0);
 		luz.makeGraphic(FlxG.width, FlxG.height, FlxColor.RED);

@@ -24,27 +24,27 @@ class PlayState extends FlxState
 
 	private var HandsMap:Map<Int, String> = [0=>"piedra", 1=>"tijera", 2=>"papel", 3=>"grillo", 4=>"navaja"];
 	private var resultadoTxtMap:Map<String, String> = [
-													"pi-pa"=>"El papel envuelve la piedra", 
-													"pi-ti"=>"La piedra destroza la tijera", 
-													"pi-gr"=>"La piedra aplasta al grillo", 
-													"pi-nv"=>"La navaja se afila en la piedra", 
-													"pa-ti"=>"La tijera corta el papel", 
-													"pa-gr"=>"El grillo se come el papel", 
-													"pa-nv"=>"El papel atasca la navaja", 
-													"ti-gr"=>"Las tijeras cortan al grillo", 
-													"ti-nv"=>"La navaja desmonta la tijera", 
-													"gr-nv"=>"El grillo maneja la navaja",
-													""=>""
-												];
+		"pi-pa"=>"El papel envuelve la piedra", 
+		"pi-ti"=>"La piedra destroza la tijera", 
+		"pi-gr"=>"La piedra aplasta al grillo", 
+		"pi-nv"=>"La navaja se afila en la piedra", 
+		"pa-ti"=>"La tijera corta el papel", 
+		"pa-gr"=>"El grillo se come el papel", 
+		"pa-nv"=>"El papel atasca la navaja", 
+		"ti-gr"=>"Las tijeras cortan al grillo", 
+		"ti-nv"=>"La navaja desmonta la tijera", 
+		"gr-nv"=>"El grillo maneja la navaja",
+		""=>""
+	];
 	
 	//filas->player1, columnas->player2
 	private var winnerMatrix:Array<Array<flash.utils.Object>> = [
-											[{win:0, txt:""}, {win:1, txt:"pi-ti"}, {win:2, txt:"pi-pa"}, {win:1, txt:"pi-gr"}, {win:2, txt:"pi-nv"}],
-											[{win:2, txt:"pi-ti"}, {win:0, txt:""}, {win:1, txt:"pa-ti"}, {win:1, txt:"ti-gr"}, {win:2, txt:"ti-nv"}],
-											[{win:1, txt:"pi-pa"}, {win:2, txt:"pa-ti"}, {win:0, txt:""}, {win:2, txt:"pa-gr"}, {win:1, txt:"pa-nv"}],
-											[{win:2, txt:"pi-gr"}, {win:2, txt:"ti-gr"}, {win:1, txt:"pa-gr"}, {win:0, txt:""}, {win:1, txt:"gr-nv"}],
-											[{win:1, txt:"pi-nv"}, {win:1, txt:"ti-nv"}, {win:2, txt:"pa-nv"}, {win:2, txt:"gr-nv"}, {win:0, txt:""}]
-										];
+		[{win:0, txt:""}, {win:1, txt:"pi-ti"}, {win:2, txt:"pi-pa"}, {win:1, txt:"pi-gr"}, {win:2, txt:"pi-nv"}],
+		[{win:2, txt:"pi-ti"}, {win:0, txt:""}, {win:1, txt:"pa-ti"}, {win:1, txt:"ti-gr"}, {win:2, txt:"ti-nv"}],
+		[{win:1, txt:"pi-pa"}, {win:2, txt:"pa-ti"}, {win:0, txt:""}, {win:2, txt:"pa-gr"}, {win:1, txt:"pa-nv"}],
+		[{win:2, txt:"pi-gr"}, {win:2, txt:"ti-gr"}, {win:1, txt:"pa-gr"}, {win:0, txt:""}, {win:1, txt:"gr-nv"}],
+		[{win:1, txt:"pi-nv"}, {win:1, txt:"ti-nv"}, {win:2, txt:"pa-nv"}, {win:2, txt:"gr-nv"}, {win:0, txt:""}]
+	];
 
 	private var P1:FlxSprite;
 	private var P1Choose:Int=0;
@@ -149,15 +149,15 @@ class PlayState extends FlxState
 		introSound.loadEmbedded(introName, false, false, onCompleteIntro.bind(player));
 		introSound.play();
 		FlxTween.tween((player==P1)? P1 : P2, {x: (player==P1)? 160: 380}, 4, {type:FlxTween.ONESHOT, onComplete:function(_)
-																				{
-																					player.animation.play("quieto");
-																					if(Reg.P1=="Ralph" && player==P1) P1.y=274 + Reg.alturaMap[Reg.P1];
-																					if(Reg.P2=="Ralph" && player==P2) P2.y=274 + Reg.alturaMap[Reg.P2];
-																					if(!introSound.playing)
-																					{
-																						finIntro(player);
-																					}																					
-																				}});
+		{
+			player.animation.play("quieto");
+			if(Reg.P1=="Ralph" && player==P1) P1.y=274 + Reg.alturaMap[Reg.P1];
+			if(Reg.P2=="Ralph" && player==P2) P2.y=274 + Reg.alturaMap[Reg.P2];
+			if(!introSound.playing)
+			{
+				finIntro(player);
+			}																					
+		}});
 	}
 
 	private function finIntro(player:FlxSprite):Void
@@ -188,66 +188,66 @@ class PlayState extends FlxState
 		var temazo:FlxSound = new FlxSound();	
 		temazo.loadEmbedded("rock-paper-scissors");
 		temazo.onComplete = function():Void {
-								P1.animation.play("agitaMano");
-								P2.animation.play("agitaMano");
-								var harriHorriHar:FlxSound = new FlxSound();
-								harriHorriHar.loadEmbedded("harriHorriHar");
-								harriHorriHar.play();
-								new FlxTimer().start(1.6, function(_)
-								{											
-									//HACKERMAN WINS
-									if(pokeG=="787887"){
-										switch (P1Choose) {
-											case 0:
-												P2Choose=4;
-											case 1:
-												P2Choose=4;
-											case 2:
-												P2Choose=3;
-											case 3:
-												P2Choose=0;
-											case 4:
-												P2Choose=3;
-											
-										}
-									}
-									if(pokeA=="asassa"){
-										switch (P2Choose) {
-											case 0:
-												P1Choose=4;
-											case 1:
-												P1Choose=4;
-											case 2:
-												P1Choose=3;
-											case 3:
-												P1Choose=0;
-											case 4:
-												P1Choose=3;											
-										}
-									}
+			P1.animation.play("agitaMano");
+			P2.animation.play("agitaMano");
+			var harriHorriHar:FlxSound = new FlxSound();
+			harriHorriHar.loadEmbedded("harriHorriHar");
+			harriHorriHar.play();
+			new FlxTimer().start(1.6, function(_)
+			{											
+				//HACKERMAN WINS
+				if(pokeG=="787887"){
+					switch (P1Choose) {
+						case 0:
+							P2Choose=4;
+						case 1:
+							P2Choose=4;
+						case 2:
+							P2Choose=3;
+						case 3:
+							P2Choose=0;
+						case 4:
+							P2Choose=3;
+						
+					}
+				}
+				if(pokeA=="asassa"){
+					switch (P2Choose) {
+						case 0:
+							P1Choose=4;
+						case 1:
+							P1Choose=4;
+						case 2:
+							P1Choose=3;
+						case 3:
+							P1Choose=0;
+						case 4:
+							P1Choose=3;											
+					}
+				}
 
-									P1.animation.play(HandsMap[P1Choose]);
-									P2.animation.play(HandsMap[P2Choose]);
-									
-									playerScore(winnerMatrix[P1Choose][P2Choose].win);
-									resultadoRonda.text = resultadoTxtMap[winnerMatrix[P1Choose][P2Choose].txt];
+				P1.animation.play(HandsMap[P1Choose]);
+				P2.animation.play(HandsMap[P2Choose]);
+				
+				playerScore(winnerMatrix[P1Choose][P2Choose].win);
+				resultadoRonda.text = resultadoTxtMap[winnerMatrix[P1Choose][P2Choose].txt];
 
-									P1TxtScore.text = "" + P1Score;
-									P2TxtScore.text = "" + P2Score;	
-									resultadoRonda.visible = true;
-									if(P1Score == 3)
-									{
-										playerMuere(P2);
-									}
-									else if(P2Score == 3)
-									{
-										playerMuere(P1);						
-									}
-									else{
-										new FlxTimer().start(2,function(_){juegaRonda();});	
-									}									
-								}, 1);				
-							};
+				P1TxtScore.text = "" + P1Score;
+				P2TxtScore.text = "" + P2Score;	
+				resultadoRonda.visible = true;
+				if(P1Score == 3)
+				{
+					playerMuere(P2);
+				}
+				else if(P2Score == 3)
+				{
+					playerMuere(P1);						
+				}
+				else{
+					new FlxTimer().start(2,function(_){juegaRonda();});	
+				}									
+			}, 1);				
+		};
 		temazo.play();											
 	}
 
@@ -321,10 +321,10 @@ class PlayState extends FlxState
 			add(fantasmaP);
 			FlxG.sound.play("vuelavuelavuela");
 			FlxTween.tween(fantasmaP, {y: -100}, 4.5, {onComplete:function(_){
-															fin=true;
-															resultadoRonda.color = FlxColor.YELLOW;
-															resultadoRonda.text = "Pulsa esc para terminar\nESPACIO para reiniciar";
-														}});
+				fin=true;
+				resultadoRonda.color = FlxColor.YELLOW;
+				resultadoRonda.text = "Pulsa esc para terminar\nESPACIO para reiniciar";
+			}});
 		});		
 	}
 }
